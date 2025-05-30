@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String     @id @default(uuid())
+  name     String
+  email    String     @unique
+  provider Provider
+  Shorturl Shorturl[]
+}
+
+model Shorturl {
+  id        String   @id @default(uuid())
+  url       String
+  shortId   String   @unique
+  clicks    Int      @default(0)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  bookmark  Boolean  @default(false)
+  metadata  Json?
+}
+
+enum Provider {
+  Google
+  Github
+}
