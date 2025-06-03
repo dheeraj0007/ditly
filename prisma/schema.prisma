@@ -13,6 +13,7 @@ model User {
   email    String     @unique
   provider Provider
   Shorturl Shorturl[]
+  QRCode   QRCode[]
 }
 
 model Shorturl {
@@ -25,6 +26,15 @@ model Shorturl {
   createdAt DateTime @default(now())
   bookmark  Boolean  @default(false)
   metadata  Json?
+}
+
+model QRCode {
+  id        String   @id @default(uuid())
+  url       String
+  image     String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 enum Provider {

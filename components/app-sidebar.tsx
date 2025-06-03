@@ -20,6 +20,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
@@ -65,6 +66,10 @@ export function AppSidebar() {
           <Button className="bg-[#022d94] flex items-center justify-center  text-white rounded-none my-2 py-5">
             <p className="py-2">Create New</p>
           </Button>
+          <div className="flex justify-end md:hidden">
+            {" "}
+            <SidebarTrigger />
+          </div>
           <DropdownMenuSeparator className="mb-2" />
           <SidebarGroupContent>
             <SidebarMenu>
