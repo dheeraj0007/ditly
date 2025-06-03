@@ -36,11 +36,12 @@ export async function POST(req: NextRequest) {
       message: "QR Code generated successfully",
       data: newQrCode,
     });
-  } catch (err) {
+  } catch (err: any) {
     console.error("Error generating QR Code:", err);
     return NextResponse.json({
       status: false,
       message: "Failed to generate QR Code",
+      error: err.message || "Unknown error",
     });
   }
 }
